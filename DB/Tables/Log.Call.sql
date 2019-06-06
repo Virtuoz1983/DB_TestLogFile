@@ -20,6 +20,8 @@ Sample code:
 USE [DB_TestLogFile]
 GO
 
+DROP TABLE Log.Call
+
 CREATE TABLE [Log].[Call](
 	[call_id] [int] NOT NULL, --id
 	[time] [time](7) NULL, --time of call
@@ -32,8 +34,10 @@ CREATE TABLE [Log].[Call](
 	[out_crt_id] [bigint] NULL, -- crt id
 	[ucid] [bigint] NULL, -- ucid
 	[node_num] [tinyint] NULL, -- number of the node
-	[NumberId] [int] NULL, -- calling or dialed number id from numbers dimenssion
-	[IpId] [int] NULL, -- callig or dialed IP id from IPs dimenssion
+	[CallingNumberId] [int] NULL, -- calling number id from numbers dimenssion
+	[DialedNumberId] [int] NULL, -- dialed number id from numbers dimenssion
+	[CallingIpId] [int] NULL, -- callig IP id from IPs dimenssion
+	[DialedIpId] [int] NULL, -- dialed IP id from IPs dimenssion
 	[LocationId] [int] NULL, -- calling or dialed location from locations dimenssion
 	[TrkNumId] [bigint] NULL, -- calling or dialed number of trunk from trunks dimenssion
 	[ConditionId] [int] NULL, -- condition of the call from conditions dimenssion
@@ -50,82 +54,3 @@ CREATE TABLE [Log].[Call](
 ) ON [PRIMARY]
 
 GO
-
-ALTER TABLE [Log].[Call]  WITH CHECK ADD  CONSTRAINT [FK_Call_DImCondition] FOREIGN KEY([ConditionId])
-REFERENCES [Log].[DimCondition] ([ConditionId])
-GO
-
-ALTER TABLE [Log].[Call] CHECK CONSTRAINT [FK_Call_DImCondition]
-GO
-
-ALTER TABLE [Log].[Call]  WITH CHECK ADD  CONSTRAINT [FK_Call_DimFeatFlag] FOREIGN KEY([FeatFlagId])
-REFERENCES [Log].[DimFeatFlag] ([FeatFlagId])
-GO
-
-ALTER TABLE [Log].[Call] CHECK CONSTRAINT [FK_Call_DimFeatFlag]
-GO
-
-ALTER TABLE [Log].[Call]  WITH CHECK ADD  CONSTRAINT [FK_Call_DimFrl] FOREIGN KEY([FrlId])
-REFERENCES [Log].[DimFrl] ([FrlId])
-GO
-
-ALTER TABLE [Log].[Call] CHECK CONSTRAINT [FK_Call_DimFrl]
-GO
-
-ALTER TABLE [Log].[Call]  WITH CHECK ADD  CONSTRAINT [FK_Call_DimInternalCodec] FOREIGN KEY([InternalCodecId])
-REFERENCES [Log].[DimInternalCodec] ([InternalCodecId])
-GO
-
-ALTER TABLE [Log].[Call] CHECK CONSTRAINT [FK_Call_DimInternalCodec]
-GO
-
-ALTER TABLE [Log].[Call]  WITH CHECK ADD  CONSTRAINT [FK_Call_DimIp] FOREIGN KEY([IpId])
-REFERENCES [Log].[DimIp] ([IpId])
-GO
-
-ALTER TABLE [Log].[Call] CHECK CONSTRAINT [FK_Call_DimIp]
-GO
-
-ALTER TABLE [Log].[Call]  WITH CHECK ADD  CONSTRAINT [FK_Call_DimLocation] FOREIGN KEY([LocationId])
-REFERENCES [Log].[DimLocation] ([LocationId])
-GO
-
-ALTER TABLE [Log].[Call] CHECK CONSTRAINT [FK_Call_DimLocation]
-GO
-
-ALTER TABLE [Log].[Call]  WITH CHECK ADD  CONSTRAINT [FK_Call_DimNumber] FOREIGN KEY([NumberId])
-REFERENCES [Log].[DimNumber] ([NumberId])
-GO
-
-ALTER TABLE [Log].[Call] CHECK CONSTRAINT [FK_Call_DimNumber]
-GO
-
-ALTER TABLE [Log].[Call]  WITH CHECK ADD  CONSTRAINT [FK_Call_DimTrk] FOREIGN KEY([TrkNumId])
-REFERENCES [Log].[DimTrk] ([TrkId])
-GO
-
-ALTER TABLE [Log].[Call] CHECK CONSTRAINT [FK_Call_DimTrk]
-GO
-
-ALTER TABLE [Log].[Call]  WITH CHECK ADD  CONSTRAINT [FK_Call_DimTrunkCodec] FOREIGN KEY([TrunkCodecId])
-REFERENCES [Log].[DimTrunkCodec] ([TrunkCodecId])
-GO
-
-ALTER TABLE [Log].[Call] CHECK CONSTRAINT [FK_Call_DimTrunkCodec]
-GO
-
-ALTER TABLE [Log].[Call]  WITH CHECK ADD  CONSTRAINT [FK_Call_DimUri] FOREIGN KEY([UriId])
-REFERENCES [Log].[DimUri] ([UriId])
-GO
-
-ALTER TABLE [Log].[Call] CHECK CONSTRAINT [FK_Call_DimUri]
-GO
-
-ALTER TABLE [Log].[Call]  WITH CHECK ADD  CONSTRAINT [FK_Call_Flag] FOREIGN KEY([FlagId])
-REFERENCES [Log].[DimFlag] ([FlagId])
-GO
-
-ALTER TABLE [Log].[Call] CHECK CONSTRAINT [FK_Call_Flag]
-GO
-
-
