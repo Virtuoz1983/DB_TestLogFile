@@ -7,6 +7,7 @@ Activities:
 
 Date		Modified By			Comments
 05.06.2019  Labunets S.O.       First design			            
+10.06.2019  Tereschenko V.A.    Made refactoring
 
 Sample code:
 
@@ -17,16 +18,9 @@ Sample code:
 */
 
 CREATE TABLE [Log].[DimLocation](
-	[LocationId] [int] NOT NULL, -- id
-	[LocationName] [varchar](200) NULL, -- location name (city)
- CONSTRAINT [PK_locations] PRIMARY KEY CLUSTERED 
-(
-	[LocationId] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
+	[LocationId]	[int] NOT NULL,			-- id
+	[LocationNum]	[int] NOT NULL,			-- location code
+	[LocationName]	[varchar](200) NULL,	-- location name
 
-GO
-
-SET ANSI_PADDING OFF
-GO
-
+    CONSTRAINT [PK_locations] PRIMARY KEY ([LocationId])
+)
