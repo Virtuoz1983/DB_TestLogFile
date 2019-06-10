@@ -24,6 +24,6 @@ CREATE TABLE [Log].[DimLocation](
     CONSTRAINT [PK_locations] PRIMARY KEY ([LocationId])
 )
 
-
+EXEC [Log].[usp_DimLocation_Feed];
 
 
