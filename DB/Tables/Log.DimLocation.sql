@@ -11,16 +11,19 @@ Date		Modified By			Comments
 
 Sample code:
 
-     DROP TABLE Log.DimLocation
-     TRUNCATE TABLE Log.DimLocation
+    DROP TABLE [Log].[DimLocation]
 
      SELECT * FROM Log.DimLocation
 */
 
 CREATE TABLE [Log].[DimLocation](
-	[LocationId]	[int] NOT NULL,			-- id
-	[LocationNum]	[int] NOT NULL,			-- location code
-	[LocationName]	[varchar](200) NULL,	-- location name
+	[LocationId]	[int] IDENTITY(1,1) NOT NULL,	-- id
+	[LocationNum]	[int] NOT NULL,					-- location code
+	[LocationName]	[varchar](200) NULL,			-- location name
 
     CONSTRAINT [PK_locations] PRIMARY KEY ([LocationId])
 )
+
+
+
+

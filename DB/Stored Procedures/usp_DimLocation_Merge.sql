@@ -8,6 +8,7 @@ Activities:
 Date		Modified By			Comments
 05.06.2019  Labunets S.O.       First procedure
 10.06.2019  Tereschenko V.A.    Made refactoring
+10.06.2019  Tereschenko V.A.    Added ISNULL check for location_num column
 
 */
 
@@ -22,7 +23,7 @@ BEGIN
 	   MERGE INTO Log.DimLocation AS Tdest
 	   USING
 			(
-			      SELECT DISTINCT location_num, location_name
+			      SELECT DISTINCT ISNULL(location_num,0) as location_num, location_name
 				  FROM
 				  (
 					SELECT 
@@ -35,7 +36,7 @@ BEGIN
 						location_to_f   AS location_name
 					FROM Stage.CallTemp
 				  ) AS A					  
-			) AS Tsrc ON Tsrc.location_num			   = Tdest.LocationNum
+			) AS Tsrc ON ISNULL(Tsrc.location_num,0)   = ISNULL(Tdest.LocationNum,0)
 					 AND ISNULL(Tsrc.location_name,'') = ISNULL(Tdest.LocationName,'')
 					 
 		-- New attributes
