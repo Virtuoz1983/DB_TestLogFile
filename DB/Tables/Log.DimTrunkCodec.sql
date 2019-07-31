@@ -1,24 +1,19 @@
-/*
-Table:  Log.Log.DimTrunkCodec
+USE [DB_TestLogFile]
+GO
 
-Purpose:  Dimenssion for storing data abuut trunk codec. SCD Type-1
+/****** Object:  Table [Log].[DimTrunkCodec]    Script Date: 31.07.2019 16:00:08 ******/
+SET ANSI_NULLS ON
+GO
 
-Activities:
+SET QUOTED_IDENTIFIER ON
+GO
 
-Date		Modified By			Comments
-05.06.2019  Labunets S.O.       First design			            
-
-Sample code:
-
-     DROP TABLE Log.Log.DimTrunkCodec
-     TRUNCATE TABLE Log.Log.DimTrunkCodec
-
-     SELECT * FROM Log.Log.DimTrunkCodec
-*/
+SET ANSI_PADDING ON
+GO
 
 CREATE TABLE [Log].[DimTrunkCodec](
-	[TrunkCodecId] [bigint] NOT NULL, -- id
-	[TrunkCodecName] [varchar](200) NULL, -- name of trunk codec
+	[TrunkCodecId] [bigint] IDENTITY(1,1) NOT NULL,
+	[TrunkCodecName] [varchar](200) NULL,
  CONSTRAINT [PK_DimTrunkCodec] PRIMARY KEY CLUSTERED 
 (
 	[TrunkCodecId] ASC
@@ -30,4 +25,4 @@ GO
 SET ANSI_PADDING OFF
 GO
 
-
+EXEC Log.usp_DimTrunkCodec_Feed

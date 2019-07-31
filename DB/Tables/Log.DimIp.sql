@@ -1,24 +1,19 @@
-/*
-Table:  Log.DimIp
+USE [DB_TestLogFile]
+GO
 
-Purpose:  Dimenssion for storing IP data. SCD Type-1
+/****** Object:  Table [Log].[DimIp]    Script Date: 31.07.2019 15:58:40 ******/
+SET ANSI_NULLS ON
+GO
 
-Activities:
+SET QUOTED_IDENTIFIER ON
+GO
 
-Date		Modified By			Comments
-05.06.2019  Labunets S.O.       First design			            
-
-Sample code:
-
-     DROP TABLE Log.DimIp
-     TRUNCATE TABLE Log.DimIp
-
-     SELECT * FROM Log.DimIp
-*/
+SET ANSI_PADDING ON
+GO
 
 CREATE TABLE [Log].[DimIp](
-	[IpId] [int] IDENTITY(1,1) NOT NULL, -- id
-	[Ip] [varchar](200) NULL, -- ip
+	[IpId] [int] IDENTITY(1,1) NOT NULL,
+	[Ip] [varchar](200) NULL,
  CONSTRAINT [PK_IPs] PRIMARY KEY CLUSTERED 
 (
 	[IpId] ASC
@@ -30,4 +25,4 @@ GO
 SET ANSI_PADDING OFF
 GO
 
-
+EXEC Log.usp_DimIp_Feed

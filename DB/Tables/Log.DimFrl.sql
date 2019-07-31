@@ -1,28 +1,28 @@
+USE [DB_TestLogFile]
+GO
 
-/*
-Table:  Log.DimFrl
+/****** Object:  Table [Log].[DimFrl]    Script Date: 31.07.2019 15:57:59 ******/
+SET ANSI_NULLS ON
+GO
 
-Purpose:  Dimenssion for storing Frl data. SCD Type-1
+SET QUOTED_IDENTIFIER ON
+GO
 
-Activities:
+SET ANSI_PADDING ON
+GO
 
-Date		Modified By			Comments
-05.06.2019  Labunets S.O.       First design			            
-
-Sample code:
-
-     DROP TABLE Log.DimFrl
-     TRUNCATE TABLE Log.DimFrl
-
-     SELECT * FROM Log.DimFrl
-*/
-
-
-
-CREATE TABLE [Log].[DimFrl]
+CREATE TABLE [Log].[DimFrl](
+	[FrlId] [int] IDENTITY(1,1) NOT NULL,
+	[FrlName] [varchar](200) NULL,
+ CONSTRAINT [PK_frls] PRIMARY KEY CLUSTERED 
 (
-	[FrlId]    int			 NOT NULL,   -- id
-	[FrlName]  NVARCHAR(200) NOT NULL,   -- Frl name
+	[FrlId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
 
-	CONSTRAINT [PK_frls] PRIMARY KEY CLUSTERED ([FrlId])
-) 
+GO
+
+SET ANSI_PADDING OFF
+GO
+
+EXEC Log.usp_DimFrl_Feed

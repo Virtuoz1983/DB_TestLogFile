@@ -1,24 +1,19 @@
-/*
-Table:  Log.DimInternalCodec
+USE [DB_TestLogFile]
+GO
 
-Purpose:  Dimenssion for storing data about internal codec. SCD Type-1
+/****** Object:  Table [Log].[DimInternalCodec]    Script Date: 31.07.2019 15:58:18 ******/
+SET ANSI_NULLS ON
+GO
 
-Activities:
+SET QUOTED_IDENTIFIER ON
+GO
 
-Date		Modified By			Comments
-05.06.2019  Labunets S.O.       First design			            
-
-Sample code:
-
-     DROP TABLE Log.DimInternalCodec
-     TRUNCATE TABLE Log.DimInternalCodec
-
-     SELECT * FROM Log.DimInternalCodec
-*/
+SET ANSI_PADDING ON
+GO
 
 CREATE TABLE [Log].[DimInternalCodec](
-	[InternalCodecId] [bigint] NOT NULL, -- id
-	[InternalCodecName] [varchar](200) NULL, -- Name of internal codec
+	[InternalCodecId] [bigint] IDENTITY(1,1) NOT NULL,
+	[InternalCodecName] [varchar](200) NULL,
  CONSTRAINT [PK_internal_codec] PRIMARY KEY CLUSTERED 
 (
 	[InternalCodecId] ASC
@@ -30,4 +25,4 @@ GO
 SET ANSI_PADDING OFF
 GO
 
-
+EXEC Log.usp_DimInternalCodec_Feed

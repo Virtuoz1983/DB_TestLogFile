@@ -1,24 +1,19 @@
-/*
-Table:  Log.DimLocation
+USE [DB_TestLogFile]
+GO
 
-Purpose:  Dimenssion for storing location data. SCD Type-1
+/****** Object:  Table [Log].[DimLocation]    Script Date: 31.07.2019 15:58:59 ******/
+SET ANSI_NULLS ON
+GO
 
-Activities:
+SET QUOTED_IDENTIFIER ON
+GO
 
-Date		Modified By			Comments
-05.06.2019  Labunets S.O.       First design			            
-
-Sample code:
-
-     DROP TABLE Log.DimLocation
-     TRUNCATE TABLE Log.DimLocation
-
-     SELECT * FROM Log.DimLocation
-*/
+SET ANSI_PADDING ON
+GO
 
 CREATE TABLE [Log].[DimLocation](
-	[LocationId] [int] NOT NULL, -- id
-	[LocationName] [varchar](200) NULL, -- location name (city)
+	[LocationId] [int] IDENTITY(1,1) NOT NULL,
+	[LocationName] [varchar](200) NULL,
  CONSTRAINT [PK_locations] PRIMARY KEY CLUSTERED 
 (
 	[LocationId] ASC
@@ -30,3 +25,4 @@ GO
 SET ANSI_PADDING OFF
 GO
 
+EXEC Log.usp_DimLocation_Feed

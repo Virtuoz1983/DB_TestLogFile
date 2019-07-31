@@ -1,23 +1,16 @@
-/*
-Table:  Log.DimNumber
+USE [DB_TestLogFile]
+GO
 
-Purpose:  Dimenssion for storing numbers. SCD Type-1
+/****** Object:  Table [Log].[DimNumber]    Script Date: 31.07.2019 15:59:19 ******/
+SET ANSI_NULLS ON
+GO
 
-Activities:
+SET QUOTED_IDENTIFIER ON
+GO
 
-Date		Modified By			Comments
-05.06.2019  Labunets S.O.       First design			            
-
-Sample code:
-
-     DROP TABLE Log.DimNumber
-     TRUNCATE TABLE Log.DimNumber
-
-     SELECT * FROM Log.DimNumber
-*/
 CREATE TABLE [Log].[DimNumber](
-	[NumberId] [int] IDENTITY(1,1) NOT NULL, -- id
-	[Number] [bigint] NULL, -- calling or dialed number
+	[NumberId] [int] IDENTITY(1,1) NOT NULL,
+	[Number] [nvarchar](50) NULL,
  CONSTRAINT [PK_numbers] PRIMARY KEY CLUSTERED 
 (
 	[NumberId] ASC
@@ -26,4 +19,4 @@ CREATE TABLE [Log].[DimNumber](
 
 GO
 
-
+EXEC Log.usp_DimNumber_Feed

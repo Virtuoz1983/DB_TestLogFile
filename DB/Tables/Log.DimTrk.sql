@@ -1,26 +1,21 @@
-/*
-Table:  Log.Log.DimTrk
+USE [DB_TestLogFile]
+GO
 
-Purpose:  Dimenssion for storing data about trunks . SCD Type-1
+/****** Object:  Table [Log].[DimTrk]    Script Date: 31.07.2019 15:59:46 ******/
+SET ANSI_NULLS ON
+GO
 
-Activities:
+SET QUOTED_IDENTIFIER ON
+GO
 
-Date		Modified By			Comments
-05.06.2019  Labunets S.O.       First design			            
-
-Sample code:
-
-     DROP TABLE Log.Log.DimTrk
-     TRUNCATE TABLE Log.Log.DimTrk
-
-     SELECT * FROM Log.Log.DimTrk
-*/
+SET ANSI_PADDING ON
+GO
 
 CREATE TABLE [Log].[DimTrk](
-	[TrkId] [bigint] IDENTITY(1,1) NOT NULL, -- id
-	[TrkCode] [int] NULL, -- code of trunk (4 numbers)
-	[TrkNum] [int] NULL, -- number of trunk (2 numbers)
-	[TrkName] [varchar](200) NULL, -- name of trunk
+	[TrkId] [bigint] IDENTITY(1,1) NOT NULL,
+	[TrkCode] [int] NULL,
+	[TrkNum] [int] NULL,
+	[TrkName] [varchar](200) NULL,
  CONSTRAINT [PK_trks] PRIMARY KEY CLUSTERED 
 (
 	[TrkId] ASC
@@ -32,4 +27,4 @@ GO
 SET ANSI_PADDING OFF
 GO
 
-
+EXEC Log.usp_DimTrk_Feed

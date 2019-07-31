@@ -1,24 +1,18 @@
-/*
-Table:  Log.DimFlag
+USE [DB_TestLogFile]
+GO
 
-Purpose:  Dimenssion for storing flag info. SCD Type-1
+/****** Object:  Table [Log].[DimFlag]    Script Date: 31.07.2019 15:57:32 ******/
+SET ANSI_NULLS ON
+GO
 
-Activities:
-
-Date		Modified By			Comments
-05.06.2019  Labunets S.O.       First design			            
-
-Sample code:
-
-     DROP TABLE Log.DimFlag
-     TRUNCATE TABLE Log.DimFlag
-
-     SELECT * FROM Log.DimFlag
-*/
+SET QUOTED_IDENTIFIER ON
+GO
 
 CREATE TABLE [Log].[DimFlag](
-	[FlagId] [bigint] NOT NULL, -- id
-	[FlagName] [varchar](200) NULL, -- information about flag
+	[FlagId] [bigint] IDENTITY(1,1) NOT NULL,
+	[FlagName] [nvarchar](150) NULL,
+	[FlagDateTimeStart] [datetime] NULL,
+	[FlagDateTimeEnd] [datetime] NULL,
  CONSTRAINT [PK_DimFlag] PRIMARY KEY CLUSTERED 
 (
 	[FlagId] ASC
@@ -27,7 +21,4 @@ CREATE TABLE [Log].[DimFlag](
 
 GO
 
-SET ANSI_PADDING OFF
-GO
-
-
+EXEC Log.usp_DimFlag_Feed
